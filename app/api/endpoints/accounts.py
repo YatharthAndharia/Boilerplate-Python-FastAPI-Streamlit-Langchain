@@ -62,6 +62,7 @@ async def get_account():
                 content=data
             )
     except Exception as e:
+        print(e)
         return JSONResponse(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             content={

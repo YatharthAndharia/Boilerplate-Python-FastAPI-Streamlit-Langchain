@@ -7,7 +7,7 @@ from decimal import Decimal
 from dotenv import load_dotenv
 load_dotenv()
 
-DEBT_SUMMARY_API_URL = os.getenv('API_BASE_URL') + '/debt-summary'
+DEBT_SUMMARY_API_URL = os.getenv('API_BASE_URL')+ '/debt-summary'
 
 def main():
     try:

@@ -15,6 +15,7 @@ load_dotenv()
 router = APIRouter()
 
 postgres_connection_uri=f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+
 db = SQLDatabase.from_uri(postgres_connection_uri)
 llm_sql = ChatOpenAI(model=os.getenv('OPENAI_GPT_3.5_TURBO'), temperature=0,api_key=os.getenv('OPENAI_API_KEY'))
 llm=ChatOpenAI(model=os.getenv('OPENAI_GPT_4O_MINI'), temperature=0,api_key=os.getenv('OPENAI_API_KEY'))

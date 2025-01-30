@@ -3,7 +3,10 @@ import requests
 import os
 import json
 from dotenv import load_dotenv
-load_dotenv()
+from pathlib import Path
+dotenv_path = Path(__file__).resolve().parent.parent.parent / "streamlit.env"
+
+load_dotenv(dotenv_path)
 
 # Streamlit UI
 st.set_page_config(page_title="AI-Bot", page_icon='🧠',layout="wide")
@@ -13,7 +16,7 @@ st.title("🧠 AI-Bot")
 
 # Input box for the question
 question = st.text_input("**Enter your question:**", placeholder="E.g., Show all transactions with amounts greater than 1000")
-api_url=os.getenv('API_BASE_URL')+'/ai-bot'
+api_url=os.getenv('API_BASE_URL') + '/ai-bot'
 # Button to trigger API call
 if st.button("Submit"):
     if question.strip():

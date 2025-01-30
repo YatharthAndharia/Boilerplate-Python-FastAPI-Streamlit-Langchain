@@ -5,7 +5,10 @@ import os
 import json
 from dotenv import load_dotenv
 
-load_dotenv()
+from pathlib import Path
+dotenv_path = Path(__file__).resolve().parent.parent.parent / "streamlit.env"
+
+load_dotenv(dotenv_path)
 
 # API URLs (replace with your actual API endpoints)
 GET_ACCOUNTS_API_URL = os.getenv('API_BASE_URL') + '/get-accounts'

@@ -2,12 +2,14 @@
     SESSION MANAGEMENT FILE
 """
 import os
+from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import QueuePool
 from dotenv import load_dotenv
 
-load_dotenv()
+dotenv_path = Path(__file__).resolve().parent.parent.parent / "backend.env"
+load_dotenv(dotenv_path)
 
 # Database configuration
 db_host = os.getenv('DB_HOST')
