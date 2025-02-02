@@ -8,7 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import QueuePool
 from dotenv import load_dotenv
 
-dotenv_path = Path(__file__).resolve().parent.parent.parent / "backend.env"
+dotenv_path = Path(__file__).resolve().parent.parent / "backend.env"
 load_dotenv(dotenv_path)
 
 # Database configuration
@@ -17,7 +17,6 @@ db_port = os.getenv('DB_PORT')
 db_name = os.getenv('DB_NAME')
 db_username = os.getenv('DB_USER')
 db_password = os.getenv('DB_PASSWORD')
-
 
 
 

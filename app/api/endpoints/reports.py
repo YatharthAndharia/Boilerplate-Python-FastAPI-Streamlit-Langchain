@@ -62,10 +62,15 @@ async def get_debt_summary(
                         if owes_report[debtor][item]-owes_report[item][debtor]>=0:
                             owes_report[debtor][item] -= owes_report[item][debtor]                                
                             del owes_report[item][debtor]
+        if owes_report!={}:
+            return JSONResponse(
+                status_code=status.HTTP_200_OK,
+                content=owes_report
+            )
         return JSONResponse(
-            status_code=status.HTTP_200_OK,
-            content=owes_report
-        )
+                status_code=status.HTTP_404_NOT_FOUND,
+                content=""
+            )
     except Exception as e:
         print(e)
         return JSONResponse(
