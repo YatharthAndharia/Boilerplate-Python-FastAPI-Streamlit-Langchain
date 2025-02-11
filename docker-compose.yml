@@ -5,12 +5,8 @@ services:
     image: postgres:14
     container_name: postgres
     restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: tx_manager
-      # Add this to ensure PostgreSQL accepts connections from other containers
-      POSTGRES_HOST_AUTH_METHOD: trust
+    env_file:
+      - ./app/.env
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./app/db/queries.sql:/docker-entrypoint-initdb.d/queries.sql
@@ -33,13 +29,14 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    # environment:
-    #   # Note the hostname is the service name 'postgres'
-    #   DATABASE_URL: "postgresql://postgres:password@postgres:5432/tx_manager"
+    env_file:
+      - ./app/.env
     ports:
       - "8000:8000"
     networks:
       - app_network
+    volumes:
+      - ./app:/app/app
 
   # Rest of your services remain the same...
 
@@ -50,12 +47,14 @@ services:
     container_name: streamlit
     depends_on:
       - backend
-    environment:
-      API_BASE_URL: "http://backend:8000/homefinance"
+    env_file:
+      - ./streamlitapp/.env
     ports:
       - "8501:8501"
     networks:
       - app_network
+    volumes:
+      - ./streamlitapp:/app
 
 volumes:
   postgres_data:

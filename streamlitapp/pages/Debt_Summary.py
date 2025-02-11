@@ -6,7 +6,7 @@ from datetime import datetime, date
 from decimal import Decimal
 from pathlib import Path
 from dotenv import load_dotenv
-dotenv_path = Path(__file__).resolve().parent.parent / "streamlit.env"
+dotenv_path = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(dotenv_path)
 
 DEBT_SUMMARY_API_URL = os.getenv('API_BASE_URL')+ '/debt-summary'
@@ -27,10 +27,10 @@ def main():
             df=df.sort_values(by='payer')
             st.table(df)
         else:
-            st.warning(f"Summary not found.")
+            st.warning(f"Debt Summary not found!")
             return
     except Exception as e:
-        st.error(f"An error occurred while fetching report: {e}")
+        st.warning("Debt Summary not found")
         return
 
 if __name__ == "__main__":
