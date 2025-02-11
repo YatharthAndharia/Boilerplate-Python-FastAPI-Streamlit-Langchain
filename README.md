@@ -39,9 +39,10 @@ systemctl start postgresql
     ```
     pip install -r requirements.txt
     ```
-4. create .env file in project root folder and add all required credentials. Refer .env.example
+4. create .env file in app and streamlitapp folders and add all required credentials. Refer respected example env.
     ```
-    touch .env
+    touch ./app/.env
+    touch ./streamlitapp/.env
     ```
 5. Start the backend server.
     ```
@@ -52,5 +53,31 @@ systemctl start postgresql
     streamlit run streamlitapp/app.py
     ```
 
+## Run using docker
+### Prerequisite
+Only if you have postgresql installed in your system then it should be inactive.
+```
+systemctl status postgresql
+```
+If status is not inactive you can stop it using following command.
+```
+systemctl stop postgresql
+```
+
+Create .env files inside app and streamlitapp folder and set the values, refer respsected example env files.
+```
+    touch ./app/.env
+    touch ./streamlitapp/.env
+```
+
+Run the following command to start the backend and frontend servers and setup database connection.
+```
+docker compose up --build
+```
+in case you are facing permission issues for running the above command try with ```sudo```.
+```
+sudo docker compose up --build
+```
+
 ##
-**This is still an underdevelopement project and stay connected for updates and new frameworks inclusion in boilerplate. I am also adding the dockerised version of this app soon.**
+**This is still an underdevelopement project and stay connected for updates and new frameworks inclusion in boilerplate.**
